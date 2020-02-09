@@ -1,0 +1,4 @@
+<div class="articles" *ngIf="newsApiService.articles.length">
+  <article-item *ngFor="let article of newsApiService.articles" [articleData]="article"></article-item>
+  <button class="button" (click)="loadMore()">Load more</button>
+</div>

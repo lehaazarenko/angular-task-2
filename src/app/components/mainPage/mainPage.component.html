@@ -1,0 +1,6 @@
+<div class="main-page">
+  <navigation (sourceUpdated)="handleSourceUpdate($event)"></navigation>
+  <div class="content-container">
+    <articles [source]="newsApiService.selectedSource"></articles>
+  </div>
+</div>

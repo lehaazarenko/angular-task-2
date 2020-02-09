@@ -1,0 +1,89 @@
+<div class="app-container">
+  <header-component [sourceName]="(newsApiService.selectedSource && newsApiService.selectedSource.name) || 'My Source'"></header-component>
+  <div class="content-container">
+  	<router-outlet></router-outlet>
+  </div>
+  <footer-component></footer-component>
+
+  <modal id="edit-modal">
+    <h2>Edit Article</h2>
+    <form #editArticle="ngForm" (ngSubmit)="onEditFormSubmit(editArticle.value)" *ngIf="newsApiService.selectedArticle">
+      <div class="form-column">
+        <div class="form-group">
+          <label>Heading</label>
+          <input type="text" name="title" required ngModel="{{newsApiService.selectedArticle.title}}"/>
+        </div>
+        <div class="form-group">
+          <label>Short description</label>
+          <input type="text" name="description" required ngModel="{{newsApiService.selectedArticle.description}}"/>
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea name="content" required ngModel="{{newsApiService.selectedArticle.content}}"></textarea>
+        </div>
+      </div>
+      <div class="form-column">
+        <div class="form-group">
+          <label>Image (URL)</label>
+          <input type="text" name="image" ngModel="{{newsApiService.selectedArticle.urlToImage}}"/>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="datetime-local" name="date" required [value]="newsApiService.selectedArticle.publishedAt" ngModel="{{newsApiService.selectedArticle.publishedAt}}" (ngModelChange)="newsApiService.selectedArticle.publishedAt = $event"/>
+        </div>
+        <div class="form-group">
+          <label>Author</label>
+          <input type="text" name="author" required ngModel="{{newsApiService.selectedArticle.author}}"/>
+        </div>
+        <div class="form-group">
+          <label>Source URL</label>
+          <input type="text" name="source-url" pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})" required ngModel="{{newsApiService.selectedArticle.url}}"/>
+        </div>
+        <button class="button" type="submit" [disabled]="!editArticle.valid">Edit</button>
+        <button class="button" (click)="closeModal('edit-modal')">Cancel</button>
+      </div>
+    </form>
+    <button class="modal-close" (click)="closeModal('edit-modal')">X</button>
+  </modal>
+
+  <modal id="create-modal">
+    <h2>Create Article</h2>
+    <form #createArticle="ngForm" (ngSubmit)="onCreateFormSubmit(createArticle.value)">
+      <div class="form-column">
+        <div class="form-group">
+          <label>Heading</label>
+          <input type="text" name="title" required ngModel/>
+        </div>
+        <div class="form-group">
+          <label>Short description</label>
+          <input type="text" name="description" required ngModel/>
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea name="content" required ngModel></textarea>
+        </div>
+      </div>
+      <div class="form-column">
+        <div class="form-group">
+          <label>Image (URL)</label>
+          <input type="text" name="image" pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})" required ngModel/>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" name="date" required ngModel/>
+        </div>
+        <div class="form-group">
+          <label>Author</label>
+          <input type="text" name="author" required ngModel/>
+        </div>
+        <div class="form-group">
+          <label>Source URL</label>
+          <input type="text" name="source-url" pattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})" required ngModel/>
+        </div>
+        <button class="button" type="submit" [disabled]="!createArticle.valid">Create</button>
+        <button class="button" (click)="closeModal('create-modal')">Cancel</button>
+      </div>
+    </form>
+    <button class="modal-close" (click)="closeModal('create-modal')">X</button>
+  </modal>
+</div>
