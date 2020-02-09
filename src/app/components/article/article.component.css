@@ -1,0 +1,29 @@
+.article-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.article-item .article-image {
+  width: 20%;
+}
+
+.article-item .article-main-info {
+  width: 30%;
+}
+
+.article-item .article-title,
+.article-item .article-description {
+  margin-bottom: 10px;
+}
+
+.article-item .article-action {
+  display: block;
+}
+
+.article-item .article-action.delete {
+  background-color: mistyrose;
+}

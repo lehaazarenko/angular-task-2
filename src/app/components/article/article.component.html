@@ -1,0 +1,13 @@
+<div class="article-item">
+  <img [src]="articleData.urlToImage" class="article-image"/>
+  <div class="article-main-info">
+    <h3 class="article-title">{{articleData.title}}</h3>
+    <p class="article-description">{{articleData.description}}</p>
+    <a [href]="articleData.url" target="_blank">Read more...</a>
+  </div>
+  <div class="article-date"></div>
+  <div class="article-actions">
+    <button class="button article-action edit" (click)="openModal('edit-modal')">Edit</button>
+    <button class="button article-action delete" (click)="deleteArticle()">Delete</button>
+  </div>
+</div>

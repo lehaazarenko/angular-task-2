@@ -1,0 +1,6 @@
+<div class="navigation">
+  <select [disabled]="sourcesLoading" #sourceSelect (change)='onSourceSelectChange(sourceSelect.value)'>
+    <option *ngFor="let source of this.newsApiService.sources" [value]="source.id" >{{source.name}}</option>
+  </select>
+  <button class="button create-button" (click)="createArticle()">Create</button>
+</div>

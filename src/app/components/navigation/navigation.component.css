@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+  height: 50px;
+  background-color: lavander;
+}
+
+.navigation {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-button {
+  background-color: palegreen;
+}
